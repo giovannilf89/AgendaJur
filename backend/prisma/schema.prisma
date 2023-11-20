@@ -39,7 +39,8 @@ model Categoria {
 model Processo {
   id_proc    String @id @default(uuid())
   numero     String
-  nome_parte String
+  banner     String
+  notas      String
 
   create_at DateTime? @default(now())
   update_at DateTime? @default(now())

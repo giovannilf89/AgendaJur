@@ -7,7 +7,6 @@ class EditarProcessoController {
     const editProcessoService = new EditarProcessoService();
     const edit = await editProcessoService.execute({
       id,
-      editNome,
       editNumero,
     });
     return res.json(edit);

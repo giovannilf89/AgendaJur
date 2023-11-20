@@ -45,6 +45,8 @@ export default function Dashboard() {
       <div>
         <h2><Link to="/CriarAdv">Cadastrar Advogado</Link></h2>
         <h2><Link to="/ListarAdv">Listar Advogados</Link></h2>
+        <h2><Link to="/CriarCliente">Criar Cliente</Link></h2>
+        <h2><Link to="/CriarProcesso">Criar Processo</Link></h2>
         <button onClick={handleSair}>Sair</button>
       </div>
     </div>

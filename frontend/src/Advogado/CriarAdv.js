@@ -9,32 +9,32 @@ function CadAdv() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  useEffect(() => {
-    const iToken = localStorage.getItem("@tklogin2023");
-    const token = JSON.parse(iToken);
+  // useEffect(() => {
+  //   const iToken = localStorage.getItem("@tklogin2023");
+  //   const token = JSON.parse(iToken);
 
-    if (!token) {
-      navigation("/");
-      return;
-    } else if (token) {
-      async function verificaToken() {
-        const resposta = await apiLocal.get("/ListarAdvToken", {
-          headers: {
-            // eslint-disable-next-line no-useless-concat
-            Authorization: "Bearer " + `${token}`,
-          },
-        });
-        if (resposta.data?.dados) {
-          // PERGUNTAR PROF OU DANILO PORQUE ESTA VINDO NULO
-          navigation("/");
-          // alert("token invalido"); //testar se esta entrando nessa condicional
-          return;
-        }
-        // console.log(resposta); // consulta a resposta da api
-      }
-      verificaToken();
-    }
-  }, []);
+  //   if (!token) {
+  //     navigation("/");
+  //     return;
+  //   } else if (token) {
+  //     async function verificaToken() {
+  //       const resposta = await apiLocal.get("/ListarAdvToken", {
+  //         headers: {
+  //           // eslint-disable-next-line no-useless-concat
+  //           Authorization: "Bearer " + `${token}`,
+  //         },
+  //       });
+  //       if (resposta.data?.dados) {
+  //         // PERGUNTAR PROF OU DANILO PORQUE ESTA VINDO NULO
+  //         navigation("/");
+  //         // alert("token invalido"); //testar se esta entrando nessa condicional
+  //         return;
+  //       }
+  //       // console.log(resposta); // consulta a resposta da api
+  //     }
+  //     verificaToken();
+  //   }
+  // }, []);
 
   async function Cadastro(e) {
     e.preventDefault();

@@ -169,6 +169,7 @@ function CadCliente() {
           <br />
           <button type="submit">Enviar</button>
         </form>
+        <button onClick={() => navigation("/Dashboard")}>Voltar</button>
       </div>
     </div>
   );

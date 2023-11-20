@@ -2,7 +2,8 @@ import prismaClient from "../../prisma";
 
 interface CriarProcesso {
   numero: string;
-  nome_parte: string;
+  banner: string;
+  notas: string;
   categoriaId: string;
   advogadoId: string;
   clienteId: string;
@@ -11,20 +12,22 @@ interface CriarProcesso {
 class CriarProcessoService {
   async execute({
     numero,
-    nome_parte,
+    banner,
+    notas,
     categoriaId,
     advogadoId,
     clienteId,
   }: CriarProcesso) {
-    // console.log("service", numero, nome_parte);
-    if (!numero || !nome_parte || !categoriaId || !advogadoId || !clienteId) {
+    // console.log("service", numero);
+    if (!numero || !banner || !notas || !categoriaId || !advogadoId || !clienteId) {
       throw new Error("Campos em branco não são permitidos");
     }
 
     await prismaClient.processo.create({
       data: {
         numero: numero,
-        nome_parte: nome_parte,
+        banner: banner,
+        notas: notas,
         categoriaId: categoriaId,
         advogadoId: advogadoId,
         clienteId: clienteId,

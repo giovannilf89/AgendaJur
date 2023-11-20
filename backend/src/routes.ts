@@ -21,7 +21,12 @@ import { ListarProcessoController } from "./controllers/Processo/ListarProcessCo
 import { isAutenticado } from "./middleware/isAutenticado";
 import { ListarAdvTokenService } from "./services/Advogado/ListarAdvTokenService";
 
+
+import multer from 'multer'
+import uploadConfig from './config/multer'
+
 const router = Router();
+const upload = multer(uploadConfig.upload('./tmp'))
 
 export { router };
 
@@ -73,7 +78,7 @@ router.get(
 
 router.post(
   "/CriarProcesso",
-  isAutenticado,
+  isAutenticado, upload.single('file'),
   new CriarProcessoController().handle
 );
 router.delete(

@@ -3,18 +3,32 @@ import { CriarProcessoService } from "../../services/Processo/CriarProcessoServi
 
 class CriarProcessoController {
   async handle(req: Request, res: Response) {
-    const { numero, nome_parte, categoriaId, advogadoId, clienteId } = req.body;
-    // console.log(numero, nome_parte);
-
-    const criarProcessoService = new CriarProcessoService();
-    const resposta = await criarProcessoService.execute({
+    const {
       numero,
-      nome_parte,
+      notas,
       categoriaId,
       advogadoId,
       clienteId,
-    });
-    return res.json(resposta);
+    } = req.body;
+    console.log(req.body);
+
+    if (!req.file) {
+      throw new Error("Erro ao anexar processo, tente novamente");
+    } else {
+
+      const { originalname, filename: banner } = req.file
+
+      const criarProcessoService = new CriarProcessoService();
+      const resposta = await criarProcessoService.execute({
+        numero,
+        banner,
+        notas,
+        categoriaId,
+        advogadoId,
+        clienteId,
+      });
+      return res.json(resposta);
+    }
   }
 }
 

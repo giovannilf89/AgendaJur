@@ -1,13 +1,13 @@
 -- CreateTable
 CREATE TABLE `advogados` (
-    `id` VARCHAR(191) NOT NULL,
+    `id_adv` VARCHAR(191) NOT NULL,
     `nome` VARCHAR(191) NOT NULL,
     `email` VARCHAR(191) NOT NULL,
     `senha` VARCHAR(191) NOT NULL,
     `create_at` DATETIME(3) NULL DEFAULT CURRENT_TIMESTAMP(3),
     `update_at` DATETIME(3) NULL DEFAULT CURRENT_TIMESTAMP(3),
 
-    PRIMARY KEY (`id`)
+    PRIMARY KEY (`id_adv`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
@@ -24,7 +24,8 @@ CREATE TABLE `categorias` (
 CREATE TABLE `processos` (
     `id_proc` VARCHAR(191) NOT NULL,
     `numero` VARCHAR(191) NOT NULL,
-    `nome_parte` VARCHAR(191) NOT NULL,
+    `banner` VARCHAR(191) NOT NULL,
+    `notas` VARCHAR(191) NOT NULL,
     `create_at` DATETIME(3) NULL DEFAULT CURRENT_TIMESTAMP(3),
     `update_at` DATETIME(3) NULL DEFAULT CURRENT_TIMESTAMP(3),
     `categoriaId` VARCHAR(191) NOT NULL,
@@ -57,4 +58,4 @@ ALTER TABLE `processos` ADD CONSTRAINT `processos_categoriaId_fkey` FOREIGN KEY 
 ALTER TABLE `processos` ADD CONSTRAINT `processos_clienteId_fkey` FOREIGN KEY (`clienteId`) REFERENCES `clientes`(`id_cli`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `processos` ADD CONSTRAINT `processos_advogadoId_fkey` FOREIGN KEY (`advogadoId`) REFERENCES `advogados`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE `processos` ADD CONSTRAINT `processos_advogadoId_fkey` FOREIGN KEY (`advogadoId`) REFERENCES `advogados`(`id_adv`) ON DELETE SET NULL ON UPDATE CASCADE;
