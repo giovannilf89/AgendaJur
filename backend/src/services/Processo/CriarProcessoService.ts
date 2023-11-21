@@ -19,7 +19,14 @@ class CriarProcessoService {
     clienteId,
   }: CriarProcesso) {
     // console.log("service", numero);
-    if (!numero || !banner || !notas || !categoriaId || !advogadoId || !clienteId) {
+    if (
+      !numero ||
+      !banner ||
+      !notas ||
+      !categoriaId ||
+      !advogadoId ||
+      !clienteId
+    ) {
       throw new Error("Campos em branco não são permitidos");
     }
 
@@ -33,7 +40,7 @@ class CriarProcessoService {
         clienteId: clienteId,
       },
     });
-    return { data: "Processo criado com sucesso" };
+    return { dados: "Processo criado com sucesso" };
   }
 }
 

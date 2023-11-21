@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import apiLocal from "../API/apiLocal/api";
-import {useNavigate} from 'react-router-dom'
+import { Navigate, useNavigate } from "react-router-dom";
 
 export default function Processos() {
   const [categorias, setCategorias] = useState([""]);
@@ -50,52 +50,57 @@ export default function Processos() {
     setClientes(resposta.data);
   }
 
-  useEffect (() => {
+  useEffect(() => {
     loadCategorias();
     loadAdvogados();
     loadClientes();
-  }, [])
-  
+  }, []);
 
   function handleDocument(e) {
-    console.log(e.target.files)
+    // console.log(e.target.files);
     if (!e.target.files) {
       return;
     }
     if (e.target.files[0].type !== "application/pdf") {
-      alert("Só PDF, corno!")
+      toast.warn("Somente arquivos no formato PDF são aceitos");
+      e.target.value = null;
       return;
     }
 
     const document = e.target.files[0];
     setDocument(document);
+    toast.success("Processo anexado com sucesso");
   }
 
   async function handleCadastrar(e) {
     e.preventDefault();
     try {
-      const bebezao = new FormData();
+      const data = new FormData();
 
-      bebezao.append("numero", numero);
-      bebezao.append("notas", notas);
-      bebezao.append("categoriaId", idCategoria);
-      bebezao.append("advogadoId", idAdvogado);
-      bebezao.append("clienteId", idCliente);
-      bebezao.append("file", document, document.name);
+      data.append("numero", numero);
+      data.append("notas", notas);
+      data.append("categoriaId", idCategoria);
+      data.append("advogadoId", idAdvogado);
+      data.append("clienteId", idCliente);
+      data.append("file", document, document.name);
 
       const iToken = localStorage.getItem("@tklogin2023");
       const token = JSON.parse(iToken);
-      
-      const resposta = await apiLocal.post("/CriarProcesso", bebezao, {
+
+      const resposta = await apiLocal.post("/CriarProcesso", data, {
         headers: {
           // eslint-disable-next-line no-useless-concat
           Authorization: "Bearer " + token,
         },
       });
-      toast.success(resposta.bebezao);
+      toast.success(resposta.data.dados);
+      navigation("/Dashboard");
     } catch (err) {
       console.log(err);
     }
+    // setIdCategoria("");
+    // setIdAdvogado("");
+    // setIdCliente("");
     // setNumero("");
     // setNotas("");
     // setDocument("");
@@ -113,7 +118,11 @@ export default function Processos() {
           >
             <option value="1">Selecione...</option>
             {categorias.map((item, idx) => {
-              return <option key={idx} value={item.id_cat}>{item.nome}</option>;
+              return (
+                <option key={idx} value={item.id_cat}>
+                  {item.nome}
+                </option>
+              );
             })}
           </select>
           <br />
@@ -123,7 +132,11 @@ export default function Processos() {
           >
             <option value="1">Selecione...</option>
             {advogados.map((item, idx) => {
-              return <option key={idx} value={item.id_adv}>{item.nome}</option>;
+              return (
+                <option key={idx} value={item.id_adv}>
+                  {item.nome}
+                </option>
+              );
             })}
           </select>
           <br />
@@ -133,7 +146,11 @@ export default function Processos() {
           >
             <option value="1">Selecione...</option>
             {clientes.map((item, idx) => {
-              return <option key={idx} value={item.id_cli}>{item.nome}</option>;
+              return (
+                <option key={idx} value={item.id_cli}>
+                  {item.nome}
+                </option>
+              );
             })}
           </select>
           <br />
@@ -152,10 +169,7 @@ export default function Processos() {
           />
           <br />
           <label>Processo PDF</label>
-          <input
-            type="file"
-            onChange={handleDocument}
-          />
+          <input type="file" onChange={handleDocument} />
           <br />
           <button type="submit">Enviar</button>
         </form>

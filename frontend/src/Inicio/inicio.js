@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, Link, useParams } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import apiLocal from "../API/apiLocal/api";
 import "./inicio.css";
@@ -9,7 +9,6 @@ export default function Inicio() {
   const navigation = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { id } = useParams();
 
   useEffect(() => {
     const iToken = localStorage.getItem("@tklogin2023");
@@ -20,17 +19,18 @@ export default function Inicio() {
       return;
     } else if (token) {
       async function verificaToken() {
-        const resposta = await apiLocal.get(`/ListarAdvUnico/${id}`, {
+        const resposta = await apiLocal.get(`/ListarAdvToken`, {
           headers: {
             // eslint-disable-next-line no-useless-concat
             Authorization: "Bearer " + `${token}`,
           },
         });
-        if (resposta.dados) {
+        if (resposta.data.dados) {
           navigation("/");
           return;
+        } else if (resposta.data.id) {
+          navigation("/Dashboard");
         }
-        console.log(resposta);
       }
       verificaToken();
     }
@@ -55,6 +55,7 @@ export default function Inicio() {
       }
     } catch (err) {
       toast.error(err.response.data.error);
+      return;
     }
   }
 

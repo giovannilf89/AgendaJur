@@ -4,7 +4,6 @@ import { DeletarAdvController } from "./controllers/Advogado/DeletarAdvControlle
 import { EditarAdvController } from "./controllers/Advogado/EditarAdvController";
 import { ListarAdvController } from "./controllers/Advogado/ListarAdvController";
 import { ListarAdvTokenController } from "./controllers/Advogado/ListarAdvTokenController";
-import { ListarAdvUnicoController } from "./controllers/Advogado/ListarAdvUnicoController";
 import { CriarCategoriaController } from "./controllers/Categoria/CriarCategoriaController";
 import { DeletarCategoriaController } from "./controllers/Categoria/DeletarCategoriaController";
 import { EditarCategoriaController } from "./controllers/Categoria/EditarCategoriaController";
@@ -19,14 +18,12 @@ import { DeletarProcessoController } from "./controllers/Processo/DeletarProcess
 import { EditarProcessoController } from "./controllers/Processo/EditarProcessoController";
 import { ListarProcessoController } from "./controllers/Processo/ListarProcessController";
 import { isAutenticado } from "./middleware/isAutenticado";
-import { ListarAdvTokenService } from "./services/Advogado/ListarAdvTokenService";
 
-
-import multer from 'multer'
-import uploadConfig from './config/multer'
+import multer from "multer";
+import uploadConfig from "./config/multer";
 
 const router = Router();
-const upload = multer(uploadConfig.upload('./tmp'))
+const upload = multer(uploadConfig.upload("./tmp"));
 
 export { router };
 
@@ -40,11 +37,6 @@ router.post("/CriarAdv", new CriarAdvController().handle);
 router.delete("/DeletarAdv", isAutenticado, new DeletarAdvController().handle);
 router.put("/EditarAdv", isAutenticado, new EditarAdvController().handle);
 router.get("/ListarAdv", isAutenticado, new ListarAdvController().handle);
-router.get(
-  "/ListarAdvUnico/:id",
-  isAutenticado,
-  new ListarAdvUnicoController().handle
-);
 router.get(
   "/ListarAdvToken",
   isAutenticado,
@@ -78,7 +70,8 @@ router.get(
 
 router.post(
   "/CriarProcesso",
-  isAutenticado, upload.single('file'),
+  isAutenticado,
+  upload.single("file"),
   new CriarProcessoController().handle
 );
 router.delete(
