@@ -18,9 +18,10 @@ import { DeletarProcessoController } from "./controllers/Processo/DeletarProcess
 import { EditarProcessoController } from "./controllers/Processo/EditarProcessoController";
 import { ListarProcessoController } from "./controllers/Processo/ListarProcessController";
 import { isAutenticado } from "./middleware/isAutenticado";
-
+import {ListarAdvUnicoController} from './controllers/Advogado/ListarAdvUnicoController'
 import multer from "multer";
 import uploadConfig from "./config/multer";
+import { ListarClienteUnicoController } from "./controllers/Cliente/ListarClienteUnicoController";
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./tmp"));
@@ -41,6 +42,10 @@ router.get(
   "/ListarAdvToken",
   isAutenticado,
   new ListarAdvTokenController().handle
+);
+router.get(
+  "/ListarAdvUnico/:id",
+  new ListarAdvUnicoController().handle
 );
 
 // Categoria
@@ -111,4 +116,14 @@ router.get(
   "/ListarCliente",
   isAutenticado,
   new ListarClienteController().handle
+);
+router.get(
+  "/ListarClienteToken",
+  isAutenticado,
+  new ListarClienteController().handle
+);
+router.get(
+  "/ListarClienteUnico/:id",
+  isAutenticado,
+  new ListarClienteUnicoController().handle
 );

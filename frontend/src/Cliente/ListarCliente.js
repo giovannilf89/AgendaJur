@@ -1,23 +1,22 @@
 import { useState, useEffect } from "react";
-import api from "../API/apiLocal/api";
+import apiLocal from "../API/apiLocal/api";
 import { Link, useNavigate } from "react-router-dom";
 import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs";
 
-
-export default function ListarAdv() {
+export default function ListarClientes() {
   const [dados, setDados] = useState([""]);
   const navigation = useNavigate();
 
   const iToken = localStorage.getItem("@tklogin2023");
   const token = JSON.parse(iToken);
-  // console.log(token);
+
   useEffect(() => {
     if (!token) {
       navigation("/");
       return;
     } else if (token) {
       async function verificaToken() {
-        const resposta = await api.get("/ListarAdvToken", {
+        const resposta = await apiLocal.get("/ListarClienteToken", {
           headers: {
             // eslint-disable-next-line no-useless-concat
             Authorization: "Bearer " + `${token}`,
@@ -25,10 +24,8 @@ export default function ListarAdv() {
         });
         if (resposta.data.dados) {
           navigation("/");
-          // alert("token invalido"); //testar se esta entrando nessa condicional
           return;
         }
-        // console.log(resposta); // consulta a resposta da api
       }
       verificaToken();
     }
@@ -36,51 +33,47 @@ export default function ListarAdv() {
 
   useEffect(() => {
     async function verDados() {
-      const response = await api.get("/ListarAdv", {
+      const response = await apiLocal.get("/ListarCliente", {
         headers: {
+          // eslint-disable-next-line no-useless-concat
           Authorization: "Bearer " + `${token}`,
         },
       });
-      // console.log(response);
       setDados(response.data);
     }
     verDados();
   });
 
   async function handleDelete(id) {
-    await api.delete("/DeletarAdv", {
+    await apiLocal.delete("/DeletarCliente", {
       data: {
         remove: id,
       },
       headers: {
-        // eslint-disable-next-line no-useless-concat, no-undef
+        // eslint-disable-next-line no-useless-concat
         Authorization: "Bearer " + `${token}`,
       },
     });
-
-    // toast.success(resposta.data.dados);
     window.location.reload(true);
   }
 
   return (
     <div>
-      <h1>Advogados cadastrados:</h1>
+      <h1>Clientes Cadastrados</h1>
       {dados.map((result) => {
         return (
           <div>
-            <h3>Nome do Advogado:</h3>
+            <h3>Nome</h3>
             <h3>{result.nome}</h3>
-            <h3>Email do Advogado:</h3>
-            <h3>{result.email}</h3>
             <strong>
-              <Link to={`/EditarAdv/${result.id_adv}`}>
+              <Link to={`/EditarCliente/${result.id_cli}`}>
                 <BsFillPencilFill size="1rem" className="icon" />
               </Link>
 
               <BsFillTrashFill
                 size="1rem"
                 className="icon"
-                onClick={() => handleDelete(result.id_adv)}
+                onClick={() => handleDelete(result.id_cli)}
               />
             </strong>
           </div>

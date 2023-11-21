@@ -23,10 +23,10 @@ export default function AlterarAdv() {
         },
       });
       setListaAdv(resposta.data);
-      //   console.log(resposta);
+        console.log(resposta);
     }
     listarAdv();
-  }, [id]);
+  },[]);
 
   useEffect(() => {
     setEditNome(listaAdv.nome);
@@ -46,6 +46,7 @@ export default function AlterarAdv() {
         },
         {
           headers: {
+            // eslint-disable-next-line no-useless-concat
             Authorization: "Bearer " + `${token}`,
           },
         }
@@ -77,7 +78,7 @@ export default function AlterarAdv() {
         />
         <button type="submit">Enviar</button>
       </form>
-      <button onClick={() => navigation("/Dashboard")}>Voltar</button>
+      <button onClick={() => navigation("/ListarAdv")}>Voltar</button>
     </div>
   );
 }
