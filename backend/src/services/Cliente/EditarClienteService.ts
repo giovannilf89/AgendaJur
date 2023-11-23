@@ -42,7 +42,7 @@ class EditarClienteService {
         estado: editEstado,
       },
     });
-    return { data: "Dados alterados com sucesso" };
+    return { dados: "Dados alterados com sucesso" };
   }
 }
 

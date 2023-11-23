@@ -28,14 +28,13 @@ export default function AlterarCliente() {
           Authorization: "Bearer " + `${token}`,
         },
       });
-      setListaCliente(resposta.data);
       console.log(resposta)
+      setListaCliente(resposta.data)
     }
     ListarCliente();
-  },[]);
+  },[id, token]);
 
   useEffect(() => {
-    console.log(listaCliente.endereco)
     setEditNome(listaCliente.nome);
     setEditDocumento(listaCliente.documento);
     setEditCelular(listaCliente.celular);
@@ -72,7 +71,7 @@ export default function AlterarCliente() {
           },
         }
       );
-      toast.info(resposta.data.dados);
+      toast.success(resposta.data.dados);
       navigation("/ListarCliente");
     } catch (error) {
       console.error("Erro ao editar Cliente:", error);

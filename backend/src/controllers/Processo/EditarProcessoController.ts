@@ -3,11 +3,12 @@ import { EditarProcessoService } from "../../services/Processo/EditarProcessoSer
 
 class EditarProcessoController {
   async handle(req: Request, res: Response) {
-    const { id, editNumero, editNome } = req.body;
+    const { id, editNumero, editNotas } = req.body;
     const editProcessoService = new EditarProcessoService();
     const edit = await editProcessoService.execute({
       id,
       editNumero,
+      editNotas,
     });
     return res.json(edit);
   }

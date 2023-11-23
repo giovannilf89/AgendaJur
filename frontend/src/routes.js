@@ -8,6 +8,8 @@ import CriarCliente from './Cliente/CriarCliente'
 import CriarProcesso from './Processo/CriarProcesso'
 import ListarClientes from "./Cliente/ListarCliente";
 import EditarCliente from "./Cliente/EditarCliente"
+import ListarProcessos from "./Processo/ListarProcesso";
+import EditarProcesso from './Processo/EditarProcesso'
 export default function Rotas() {
   return (
     <BrowserRouter>
@@ -21,6 +23,8 @@ export default function Rotas() {
         <Route path="/EditarCliente/:id" element={<EditarCliente />} />
         <Route path="/ListarCliente" element={<ListarClientes />} />
         <Route path="/CriarProcesso" element={<CriarProcesso />} />
+        <Route path="/ListarProcesso" element={<ListarProcessos />} />
+        <Route path="/EditarProcesso/:id" element={<EditarProcesso />} />
       </Routes>
     </BrowserRouter>
   );

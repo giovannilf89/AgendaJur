@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import prismaClient from "../../prisma";
 import { ListarProcessoService } from "../../services/Processo/ListarProcessoService";
 
 class ListarProcessoController {

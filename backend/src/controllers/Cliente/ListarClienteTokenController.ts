@@ -1,5 +1,4 @@
 import {Request, Response} from 'express'
-import { ListarClienteService } from '../../services/Cliente/ListarClienteService';
 import { ListarClienteTokenServices } from '../../services/Cliente/ListarClienteTokenServices';
 
 class ListarClienteTokenController{
