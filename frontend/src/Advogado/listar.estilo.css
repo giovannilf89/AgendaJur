@@ -1,0 +1,57 @@
+/* Estilos CSS para a página ListarAdv */
+.lista-container {
+    position: absolute;
+    padding: 2rem 5rem;
+    margin: 20rem 40rem 20rem 40rem;
+    background-color: ghostwhite;
+    border: 2px solid black;
+    border-radius: 0.5rem;
+    width: 40%;
+  }
+  
+  .lista-header {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .lista-item {
+    border: 2px solid black;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    text-align: left;
+  }
+  
+  .lista-item h3 {
+    margin-bottom: 0.5rem;
+  }
+  
+  .lista-item strong {
+    display: flex;
+    justify-content: flex-start;
+  }
+  
+  .lista-item a,
+  .lista-item .icon {
+    text-decoration: none;
+    color: black;
+    margin-right: 1rem;
+  }
+  
+  .lista-item .icon:hover  {
+    color: rgb(175, 114, 0);
+  }
+  
+  .voltar-btn {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: 2px solid black;
+    border-radius: 0.5rem;
+    background-color: ghostwhite;
+    cursor: pointer;
+  }
+  .voltar-btn:hover{
+    color: rgb(175, 114, 0);
+  }
+  

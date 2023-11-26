@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import api from "../API/apiLocal/api";
+import './editar.estilo.css'
 
 export default function AlterarAdv() {
   const iToken = localStorage.getItem("@tklogin2023");
@@ -61,7 +62,7 @@ export default function AlterarAdv() {
   }
 
   return (
-    <div>
+    <div className="container-alterar">
       <h1>Editar Advogado</h1>
       <form onSubmit={alterarAdv}>
         <label>Nome:</label>

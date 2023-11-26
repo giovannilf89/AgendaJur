@@ -1,4 +1,4 @@
-import { Router } from "express";
+import express, { Router } from "express";
 import { CriarAdvController } from "./controllers/Advogado/CriarAdvController";
 import { DeletarAdvController } from "./controllers/Advogado/DeletarAdvController";
 import { EditarAdvController } from "./controllers/Advogado/EditarAdvController";
@@ -25,6 +25,8 @@ import { ListarClienteUnicoController } from "./controllers/Cliente/ListarClient
 import { ListarProcessoTokenController } from "./controllers/Processo/ListarProcessoTokenController";
 import { ListarProcessoUnicoController } from "./controllers/Processo/ListarPorcessoUnicoController";
 import { VisualizarProcessoController } from "./controllers/Processo/VisualizarProcessoController";
+import path from "path";
+
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./tmp"));
@@ -124,3 +126,7 @@ router.get(
   isAutenticado,
   new ListarClienteUnicoController().handle
 );
+
+//Arquivos
+
+express().use('/tmp', express.static(path.join(__dirname, 'tmp')));

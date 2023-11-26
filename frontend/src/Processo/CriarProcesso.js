@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import apiLocal from "../API/apiLocal/api";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import './criarprocesso.estilo.css'
 
 export default function Processos() {
   const [categorias, setCategorias] = useState([""]);
@@ -106,7 +107,7 @@ export default function Processos() {
     // setDocument("");
   }
   return (
-    <div>
+    <div className="container-processos"> 
       <div>
         <h1>Processos</h1>
       </div>

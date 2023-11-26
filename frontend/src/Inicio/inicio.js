@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import apiLocal from "../API/apiLocal/api";
 import "./inicio.css";
-import fundo from "../images/fundo.jpg";
+
 
 export default function Inicio() {
   const navigation = useNavigate();
@@ -61,9 +61,6 @@ export default function Inicio() {
 
   return (
     <div className="container">
-      <div className="fundo">
-        <img src={fundo} alt="Descrição da imagem" />
-      </div>
       <div>
         <form className="formulario" onSubmit={handleLogin}>
           <h1>Login</h1>

@@ -1,0 +1,48 @@
+/* Estilos CSS para a página AlterarAdv */
+.container-alterar {
+    position: absolute;
+    padding: 2rem 5rem;
+    text-align: center;
+    margin: 20rem 45rem 20rem 45rem;
+    background-color: ghostwhite;
+    border: 2px solid black;
+    border-radius: 0.5rem;
+    width: 30%;
+  }
+  
+  .container-alterar h1 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .container-alterar form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .container-alterar label {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .container-alterar input {
+    border-radius: 0.5rem;
+    height: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .container-alterar button {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: 2px solid black;
+    border-radius: 0.5rem;
+    background-color: ghostwhite;
+    cursor: pointer;
+  }
+  
+  .container-alterar button:hover {
+    color: rgb(175, 114, 0);
+  }
+  

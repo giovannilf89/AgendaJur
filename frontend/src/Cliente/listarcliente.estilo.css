@@ -1,0 +1,71 @@
+/* Estilos CSS para a página CadCliente */
+.container-cadcliente {
+  position: absolute;
+  padding: 2rem 5rem;
+  text-align: center;
+  margin: 20rem 40rem 20rem 40rem;
+  background-color: ghostwhite;
+  border: 2px solid black;
+  border-radius: 0.5rem;
+  width: 40%;
+}
+
+.container-cadcliente h1 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.container-cadcliente form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.container-cadcliente label {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.container-cadcliente input {
+  border-radius: 0.5rem;
+  height: 2rem;
+  margin-bottom: 1rem;
+}
+
+.container-cadcliente button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: 2px solid black;
+  border-radius: 0.5rem;
+  background-color: ghostwhite;
+  cursor: pointer;
+}
+
+.container-cadcliente button:hover {
+  background-color: lightgray;
+}
+
+.lista {
+  border: 2px solid black;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    text-align: left;border: 2px solid black;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+.lista strong{
+  display: flex;
+  justify-content: flex-start;
+}
+.lista h3 {
+  margin-bottom: 0.5rem;
+}
+.container-cadcliente button {
+  color: rgb(175, 114, 0);
+}

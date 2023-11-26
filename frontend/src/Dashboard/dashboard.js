@@ -2,6 +2,8 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import apiLocal from "../API/apiLocal/api";
 import { Link } from "react-router-dom";
+import "./dashboard.css"
+
 
 export default function Dashboard() {
   const navigation = useNavigate();
@@ -38,18 +40,18 @@ export default function Dashboard() {
   }
 
   return (
-    <div>
-      <div>
+    <div className="container">
+      <div className="formulario">
         <h1>Dashboard</h1>
-      </div>
-      <div>
-        <h2><Link to="/CriarAdv">Cadastrar Advogado</Link></h2>
-        <h2><Link to="/ListarAdv">Listar Advogados</Link></h2>
-        <h2><Link to="/CriarCliente">Criar Cliente</Link></h2>
-        <h2><Link to="/ListarCliente">Listar Clientes</Link></h2>
-        <h2><Link to="/CriarProcesso">Criar Processo</Link></h2>
-        <h2><Link to="/ListarProcesso">Listar Processos</Link></h2>
-        <button onClick={handleSair}>Sair</button>
+        <div>
+          <h2><Link to="/CriarAdv">Cadastrar Advogado</Link></h2>
+          <h2><Link to="/ListarAdv">Listar Advogados</Link></h2>
+          <h2><Link to="/CriarCliente">Criar Cliente</Link></h2>
+          <h2><Link to="/ListarCliente">Listar Clientes</Link></h2>
+          <h2><Link to="/CriarProcesso">Criar Processo</Link></h2>
+          <h2><Link to="/ListarProcesso">Listar Processos</Link></h2>
+          <button onClick={handleSair}>Sair</button>
+        </div>
       </div>
     </div>
   );

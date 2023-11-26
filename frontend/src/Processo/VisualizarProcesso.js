@@ -1,47 +1,74 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import apiLocal from "../API/apiLocal/api";
+import { useNavigate, useParams, Link } from "react-router-dom";
+import './visualizarprocesso.estilo.css'
 
-const VisualizarProcesso = () => {
+
+
+
+export default function VisualizarProcesso() {
+  const [dados, setDados] = useState("");
+  const navigation = useNavigate();
+
   const { id } = useParams();
-  const [processo, setProcesso] = useState(null);
+
+  const iToken = localStorage.getItem("@tklogin2023");
+  const token = JSON.parse(iToken);
 
   useEffect(() => {
-    const fetchProcesso = async () => {
-      try {
-        const response = await fetch(`/VisualizarProcesso/${id}`);
-        const data = await response.json();
-
-        if (response.ok) {
-          setProcesso(data.processo);
-        } else {
-          console.error(data.error);
+    if (!token) {
+      navigation("/");
+      return;
+    } else if (token) {
+      async function verificaToken() {
+        const resposta = await apiLocal.get("/ListarProcessoToken", {
+          headers: {
+            // eslint-disable-next-line no-useless-concat
+            Authorization: "Bearer " + `${token}`,
+          },
+        });
+        if (resposta.data.dados) {
+          navigation("/");
+          return;
         }
-      } catch (error) {
-        console.error('Erro ao obter os detalhes do processo:', error);
       }
-    };
+      verificaToken();
+    }
+  });
 
-    fetchProcesso();
-  }, [id]);
+  useEffect(() => {
+    async function VerDados() {
+      try {
+        const response = await apiLocal.get(`/VisualizarProcesso/${id}`, {
+          headers: {
+            Authorization: "Bearer " + `${token}`,
+          },
+        });
+        console.log('Dados do PDF:', response.data.processo.banner);
+        setDados(response.data.processo);
+      } catch (error) {
+        console.error('Erro ao carregar documento PDF:', error);
+      }
+    }
+    VerDados();
+  }, [id, token]);
 
   return (
-    <div>
-      <h1>Detalhes do Processo</h1>
-      {processo ? (
-        <div>
-          <p><strong>ID:</strong> {processo.id_proc}</p>
-          <p><strong>Número:</strong> {processo.numero}</p>
-          <p><strong>Notas:</strong> {processo.notas}</p>
-          <p><strong>Banner:</strong> {processo.banner}</p>
-          <p><strong>Categoria:</strong> {processo.categoria || 'N/A'}</p>
-          <p><strong>Advogado:</strong> {processo.advogado || 'N/A'}</p>
-          <p><strong>Cliente:</strong> {processo.cliente || 'N/A'}</p>
-        </div>
-      ) : (
-        <p>Carregando...</p>
+    <div className="container-visualizar-processo">
+      <h3>Número: {dados.numero}</h3>
+      <h3>Classe processual: {dados.categoria}</h3>
+      <h3>Advogado: {dados.advogado}</h3>
+      <h3>Cliente: {dados.cliente}</h3>
+      <h3>Notas: {dados.notas}</h3>
+      {dados.banner && (
+        <Link
+         href={`D:/Meus Documentos/Codes/SENAC/AgendaJur/backend/tmp/${dados.banner}`} // Certifique-se de que os dados do PDF estão em base64
+          target="_blank"
+          width="100%"
+          height="500px" rel="noreferrer"
+          >Clique aqui</Link>
       )}
+      <button onClick={() => navigation("/Dashboard")}>Voltar</button>
     </div>
   );
-};
-
-export default VisualizarProcesso;
+}

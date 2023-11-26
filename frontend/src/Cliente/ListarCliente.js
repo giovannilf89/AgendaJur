@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import apiLocal from "../API/apiLocal/api";
 import { Link, useNavigate } from "react-router-dom";
 import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs";
+import './listarcliente.estilo.css'
 
 export default function ListarClientes() {
   const [dados, setDados] = useState([""]);
@@ -58,23 +59,26 @@ export default function ListarClientes() {
   }
 
   return (
-    <div>
+    <div className="container-cadcliente">
       <h1>Clientes Cadastrados</h1>
       {dados.map((result) => {
         return (
-          <div>
+          <div className="lista"> 
             <h3>Nome</h3>
             <h3>{result.nome}</h3>
             <strong>
               <Link to={`/EditarCliente/${result.id_cli}`}>
                 <BsFillPencilFill size="1rem" className="icon" />
+                <p>Editar</p>
               </Link>
-
+              <Link>
               <BsFillTrashFill
                 size="1rem"
                 className="icon"
                 onClick={() => handleDelete(result.id_cli)}
               />
+              <p>Deletar</p>
+              </Link>
             </strong>
           </div>
         );

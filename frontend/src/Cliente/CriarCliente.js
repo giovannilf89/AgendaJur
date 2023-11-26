@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 import apiLocal from "../API/apiLocal/api";
 import { useNavigate } from "react-router-dom";
 import apiCep from "../API/apiCep/apiCep";
+import './criarcliente.estilo.css'
 
 function CadCliente() {
   const navigation = useNavigate();
@@ -97,7 +98,7 @@ function CadCliente() {
     // }
   }
   return (
-    <div>
+    <div className="container-cadastro">
       <div>
         <h1>Cadastro Cliente</h1>
       </div>

@@ -1,0 +1,46 @@
+/* Estilos CSS para a página Processos */
+.container-processos {
+    position: absolute;
+    padding: 2rem 5rem;
+    text-align: center;
+    margin: 10rem 50rem 10rem 50rem;
+    background-color: ghostwhite;
+    border: 2px solid black;
+    border-radius: 0.5rem;
+  }
+  
+  .container-processos h1 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .container-processos form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .container-processos label {
+    font-size: 1.2rem;
+  }
+  
+  .container-processos select,
+  .container-processos input {
+    border-radius: 0.5rem;
+    height: 2rem;
+  }
+  
+  .container-processos button {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: 2px solid black;
+    border-radius: 0.5rem;
+    background-color: ghostwhite;
+    cursor: pointer;
+  }
+  
+  .container-processos button:hover {
+    color: rgb(175, 114, 0);
+  }
+  

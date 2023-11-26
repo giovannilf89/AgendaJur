@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import apiLocal from "../API/apiLocal/api";
 import { Link, useNavigate } from "react-router-dom";
-import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs";
+import { BsFillTrashFill, BsFillPencilFill, BsFillFileEarmarkTextFill } from "react-icons/bs";
+import './listarprocesso.estilo.css'
 
 export default function ListarProcessos() {
   const [dados, setDados] = useState([""]);
@@ -58,7 +59,7 @@ export default function ListarProcessos() {
   }
 
   return (
-    <div>
+    <div className="container-listar-processos">
       <h1>Processos Cadastrados</h1>
       {dados.map((result) => {
         return (
@@ -66,15 +67,23 @@ export default function ListarProcessos() {
             <h3>Número do Processo</h3>
             <h3>{result.numero}</h3>
             <strong>
-              <Link to={`/EditarProcesso/${result.id_proc}`}>
-                <BsFillPencilFill size="1rem" className="icon" />
+              <Link to={`/VisualizarProcesso/${result.id_proc}`}>
+              <BsFillFileEarmarkTextFill size="1rem" className="icons" />
+              <p>Visualizar</p>
               </Link>
 
+              <Link to={`/EditarProcesso/${result.id_proc}`}>
+                <BsFillPencilFill size="1rem" className="icon" />
+                <p>Editar</p>
+              </Link>
+              <Link>
               <BsFillTrashFill
                 size="1rem"
                 className="icon"
                 onClick={() => handleDelete(result.id_proc)}
               />
+              <p>Deletar</p>
+              </Link>
             </strong>
           </div>
         );

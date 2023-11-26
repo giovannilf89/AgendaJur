@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import { toast } from "react-toastify";
 import apiLocal from "../API/apiLocal/api";
 import { useNavigate } from "react-router-dom";
+import './criar.estilo.css'
 
 function CadAdv() {
   const navigation = useNavigate();
@@ -56,27 +57,27 @@ function CadAdv() {
     }
   }
   return (
-    <div>
+    <div className="container-criar">
       <div>
         <h1>Cadastro Advogado</h1>
       </div>
       <div>
         <form onSubmit={Cadastro}>
-          <label>Nome:</label>
+          <label className="label-criar">Nome:</label>
           <input
             type="text"
             value={nome}
             onChange={(e) => setNome(e.target.value)}
           />
           <br />
-          <label>Email</label>
+          <label className="label-criar">Email:</label>
           <input
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
           <br />
-          <label>Password:</label>
+          <label className="label-criar">Password:</label>
           <input
             type="text"
             value={password}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import apiLocal from "../API/apiLocal/api";
+import './editarcliente.estilo.css'
 
 export default function AlterarCliente() {
   const iToken = localStorage.getItem("@tklogin2023");
@@ -80,7 +81,7 @@ export default function AlterarCliente() {
   }
 
   return (
-    <div>
+    <div className="container-alterarcliente">
       <h1>Editar Cliente</h1>
       <form onSubmit={alterarCliente}>
         <label>Nome:</label>

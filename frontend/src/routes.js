@@ -26,7 +26,7 @@ export default function Rotas() {
         <Route path="/CriarProcesso" element={<CriarProcesso />} />
         <Route path="/ListarProcesso" element={<ListarProcessos />} />
         <Route path="/EditarProcesso/:id" element={<EditarProcesso />} />
-        <Route path="/VisualizarProcesso/:id" element={VisualizarProcesso} />
+        <Route path="/VisualizarProcesso/:id" element={<VisualizarProcesso />} />
       </Routes>
     </BrowserRouter>
   );

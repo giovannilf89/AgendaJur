@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import api from "../API/apiLocal/api";
 import { Link, useNavigate } from "react-router-dom";
 import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs";
+import './listar.estilo.css'
 
 
 export default function ListarAdv() {
@@ -63,30 +64,36 @@ export default function ListarAdv() {
   }
 
   return (
-    <div>
-      <h1>Advogados cadastrados:</h1>
-      {dados.map((result) => {
-        return (
-          <div>
-            <h3>Nome do Advogado:</h3>
-            <h3>{result.nome}</h3>
-            <h3>Email do Advogado:</h3>
-            <h3>{result.email}</h3>
-            <strong>
-              <Link to={`/EditarAdv/${result.id_adv}`}>
-                <BsFillPencilFill size="1rem" className="icon" />
-              </Link>
-
-              <BsFillTrashFill
-                size="1rem"
-                className="icon"
-                onClick={() => handleDelete(result.id_adv)}
-              />
-            </strong>
-          </div>
-        );
-      })}
-      <button onClick={() => navigation("/Dashboard")}>Voltar</button>
-    </div>
+<div className="lista-container">
+    <h1 className="lista-header">Advogados cadastrados:</h1>
+    {dados.map((result) => (
+      <div key={result.id_adv} className="lista-item">
+        <div className="lista-item-row">
+          <label>Nome do Advogado:</label>
+          <h3>{result.nome}</h3>
+        </div>
+        <div className="lista-item-row">
+          <label>Email do Advogado:</label>
+          <h3>{result.email}</h3>
+        </div>
+        <strong className="lista-item-row">
+          <Link to={`/EditarAdv/${result.id_adv}`} className="icon">
+            <BsFillPencilFill size="1rem" />
+            <p>Editar</p>
+          </Link>
+          <Link className="icon">
+          <BsFillTrashFill
+            size="1rem"className="icon"
+            onClick={() => handleDelete(result.id_adv)}
+          />
+          <p>Deletar</p>
+          </Link>
+        </strong>
+      </div>
+    ))}
+    <button className="voltar-btn" onClick={() => navigation("/Dashboard")}>
+      Voltar
+    </button>
+  </div>
   );
 }
