@@ -24,6 +24,7 @@ import uploadConfig from "./config/multer";
 import { ListarClienteUnicoController } from "./controllers/Cliente/ListarClienteUnicoController";
 import { ListarProcessoTokenController } from "./controllers/Processo/ListarProcessoTokenController";
 import { ListarProcessoUnicoController } from "./controllers/Processo/ListarPorcessoUnicoController";
+import { VisualizarProcessoController } from "./controllers/Processo/VisualizarProcessoController";
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./tmp"));
@@ -66,7 +67,6 @@ router.put(
 );
 router.get(
   "/ListarCategoria",
-  isAutenticado,
   new ListarCategoriaController().handle
 );
 
@@ -90,6 +90,7 @@ router.put(
 router.get("/ListarProcessoToken", new ListarProcessoTokenController().handle);
 router.get("/ListarProcessoUnico/:id", new ListarProcessoUnicoController().handle)
 router.get("/ListarProcesso", new ListarProcessoController().handle)
+router.get("/VisualizarProcesso/:id", new VisualizarProcessoController().handle)
 
 // Cliente
 
