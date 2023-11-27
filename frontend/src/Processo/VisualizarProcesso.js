@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import apiLocal from "../API/apiLocal/api";
 import { useNavigate, useParams, Link } from "react-router-dom";
-import './visualizarprocesso.estilo.css'
-
-
-
+import "./visualizarprocesso.estilo.css";
+import { BsFillFileEarmarkPdfFill } from "react-icons/bs";
 
 export default function VisualizarProcesso() {
   const [dados, setDados] = useState("");
@@ -44,10 +42,13 @@ export default function VisualizarProcesso() {
             Authorization: "Bearer " + `${token}`,
           },
         });
-        console.log('Dados do PDF:', apiLocal.getUri()+'/tmp/'+response.data.processo.banner);
+        console.log(
+          "Dados do PDF:",
+          apiLocal.getUri() + "/tmp/" + response.data.processo.banner
+        );
         setDados(response.data.processo);
       } catch (error) {
-        console.error('Erro ao carregar documento PDF:', error);
+        console.error("Erro ao carregar documento PDF:", error);
       }
     }
     VerDados();
@@ -62,11 +63,14 @@ export default function VisualizarProcesso() {
       <h3>Notas: {dados.notas}</h3>
       {dados.banner && (
         <Link
-          to={apiLocal.getUri()+'/'+dados.banner} // Certifique-se de que os dados do PDF estão em base64
+          to={apiLocal.getUri() + "/" + dados.banner} // Certifique-se de que os dados do PDF estão em base64
           target="_blank"
           width="100%"
-          height="500px" rel="noreferrer"
-          >Clique aqui</Link>
+          height="500px"
+          rel="noreferrer"
+        >
+          <BsFillFileEarmarkPdfFill size="2rem" className="icon" /> <p>Abrir Processo</p>
+        </Link>
       )}
       <div>
         <button onClick={() => navigation("/Dashboard")}>Voltar</button>

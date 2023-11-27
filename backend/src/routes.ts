@@ -48,7 +48,7 @@ router.get(
   isAutenticado,
   new ListarAdvTokenController().handle
 );
-router.get("/ListarAdvUnico/:id", new ListarAdvUnicoController().handle);
+router.get("/ListarAdvUnico/:id", isAutenticado, new ListarAdvUnicoController().handle);
 
 // Categoria
 
@@ -69,6 +69,7 @@ router.put(
 );
 router.get(
   "/ListarCategoria",
+  isAutenticado,
   new ListarCategoriaController().handle
 );
 
@@ -86,13 +87,13 @@ router.delete(
   new DeletarProcessoController().handle
 );
 router.put(
-  "/EditarProcesso",
+  "/EditarProcesso", isAutenticado,
   new EditarProcessoController().handle
 );
-router.get("/ListarProcessoToken", new ListarProcessoTokenController().handle);
-router.get("/ListarProcessoUnico/:id", new ListarProcessoUnicoController().handle)
-router.get("/ListarProcesso", new ListarProcessoController().handle)
-router.get("/VisualizarProcesso/:id", new VisualizarProcessoController().handle)
+router.get("/ListarProcessoToken", isAutenticado, new ListarProcessoTokenController().handle);
+router.get("/ListarProcessoUnico/:id", isAutenticado, new ListarProcessoUnicoController().handle)
+router.get("/ListarProcesso", isAutenticado, new ListarProcessoController().handle)
+router.get("/VisualizarProcesso/:id", isAutenticado, new VisualizarProcessoController().handle)
 
 // Cliente
 

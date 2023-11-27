@@ -163,7 +163,7 @@ export default function Processos() {
           />
           <br />
           <label>Notas</label>
-          <input
+          <textarea cols="30" rows="10"
             type="text"
             value={notas}
             onChange={(e) => setNotas(e.target.value)}

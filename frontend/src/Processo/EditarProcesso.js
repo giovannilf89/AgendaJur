@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import apiLocal from "../API/apiLocal/api";
+import './editarprocesso.estilo.css'
 
 export default function AlterarProcesso() {
   const iToken = localStorage.getItem("@tklogin2023");
@@ -57,7 +58,7 @@ export default function AlterarProcesso() {
   }
 
   return (
-    <div>
+    <div className="alterar-processo-container">
       <h1>Editar Processo</h1>
       <form onSubmit={alterarProcesso}>
         <label>Numero:</label>
@@ -68,7 +69,7 @@ export default function AlterarProcesso() {
         />
         <br />
         <label>Notas:</label>
-        <input
+        <textarea cols="30" rows="10"
           type="text"
           value={editNota}
           onChange={(e) => setEditNota(e.target.value)}

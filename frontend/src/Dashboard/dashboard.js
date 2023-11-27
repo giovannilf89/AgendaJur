@@ -43,7 +43,7 @@ export default function Dashboard() {
     <div className="container">
       <div className="formulario">
         <h1>Dashboard</h1>
-        <div>
+        <div className="menu">
           <h2><Link to="/CriarAdv">Cadastrar Advogado</Link></h2>
           <h2><Link to="/ListarAdv">Listar Advogados</Link></h2>
           <h2><Link to="/CriarCliente">Criar Cliente</Link></h2>
