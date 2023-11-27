@@ -44,7 +44,7 @@ export default function VisualizarProcesso() {
             Authorization: "Bearer " + `${token}`,
           },
         });
-        console.log('Dados do PDF:', response.data.processo.banner);
+        console.log('Dados do PDF:', apiLocal.getUri()+'/tmp/'+response.data.processo.banner);
         setDados(response.data.processo);
       } catch (error) {
         console.error('Erro ao carregar documento PDF:', error);
@@ -62,13 +62,15 @@ export default function VisualizarProcesso() {
       <h3>Notas: {dados.notas}</h3>
       {dados.banner && (
         <Link
-         href={`D:/Meus Documentos/Codes/SENAC/AgendaJur/backend/tmp/${dados.banner}`} // Certifique-se de que os dados do PDF estão em base64
+          to={apiLocal.getUri()+'/'+dados.banner} // Certifique-se de que os dados do PDF estão em base64
           target="_blank"
           width="100%"
           height="500px" rel="noreferrer"
           >Clique aqui</Link>
       )}
-      <button onClick={() => navigation("/Dashboard")}>Voltar</button>
+      <div>
+        <button onClick={() => navigation("/Dashboard")}>Voltar</button>
+      </div>
     </div>
   );
 }

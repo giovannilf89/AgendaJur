@@ -126,7 +126,3 @@ router.get(
   isAutenticado,
   new ListarClienteUnicoController().handle
 );
-
-//Arquivos
-
-express().use('/tmp', express.static(path.join(__dirname, 'tmp')));

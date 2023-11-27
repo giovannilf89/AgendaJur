@@ -9,6 +9,8 @@ app.use(express.json()); //pega a funcionalidade do express.json da constante ap
 
 app.use(cors()); // esses () dentro de outro () é por ser uma função
 
+app.use(express.static('tmp'));
+
 app.use(router);
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
